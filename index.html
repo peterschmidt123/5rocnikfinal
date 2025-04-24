@@ -94,52 +94,45 @@
   <script>
     const tasks = [
       {
-        title: "Úloha 1: Knižnica pod zemou",
-        context: "Vstúpili ste do miestnosti plnej starých zaprášených kníh. Na polici je 125 kníh. Musíte ich rozdeliť do 8 rovnako veľkých políc. Len tak sa otvorí ďalšie dvere.",
-        question: "Koľko kníh bude na jednej polici a aký bude zvyšok?",
-        answer: "15",
+        title: "Úloha 1: Mapa úniku",
+        context: "Našli ste plánik s rozmermi 48 cm × 36 cm. Každý obvodový segment je kódovaný. Najprv vypočítajte obvod. Potom tento výsledok rozdeľte medzi 7 stráží rovnomerne. Koľko dostane každý a aký bude zvyšok?",
+        question: "Obvod obdĺžnika je? A ako sa rozdelí medzi 7 stráží?",
+        answer: "168",
+        remainder: "0"
+      },
+      {
+        title: "Úloha 2: Skrinka so zrkadlami",
+        context: "Zrkadlové dlaždice sú usporiadané do radu po 96 kusov. Musíte ich zoradiť do radov po 9, ale tak, aby v každom rade bola zrkadlová symetria (t.j. párny počet dlaždíc). Koľko úplných symetrických radov môžete spraviť a koľko zvyšných dlaždíc zostane?",
+        question: "Koľko symetrických radov po 8 môžete vytvoriť z 96 dlaždíc?",
+        answer: "12",
+        remainder: "0"
+      },
+      {
+        title: "Úloha 3: Farebný kód",
+        context: "Každá trieda má 137 farebných značiek. Potrebujete ich roztriediť po 11 na každý typ. Koľko typov vznikne a koľko zostane mimo?",
+        question: "137 značiek po 11 na typ = ?",
+        answer: "12",
         remainder: "5"
       },
       {
-        title: "Úloha 2: Šatňa strateného tímu",
-        context: "Zrazu sa otvorí tajná chodba do starej telocvične. V šatni nájdete 94 tričiek. Chcete ich roztriediť do tašiek po 7 kusoch. Systém čaká na počet plných tašiek aj zvyšné tričká.",
-        question: "Koľko tašiek a koľko tričiek zostane?",
-        answer: "13",
-        remainder: "3"
+        title: "Úloha 4: Zásoby v sklade",
+        context: "Našli ste 245 krabičiek s jedlom. Každá polica unesie iba 13 krabičiek. Rozdeľte ich spravodlivo. Zistite, koľko políc naplníte a koľko krabičiek zostane bez miesta.",
+        question: "Koľko políc bude potrebných a aký je zvyšok?",
+        answer: "18",
+        remainder: "11"
       },
       {
-        title: "Úloha 3: Galéria spomienok",
-        context: "Steny sú pokryté obrázkami. Máte 107 plagátov a panely, kde sa zmestí vždy 9 plagátov. Vložte ich, aby systém zobrazil ďalšie dvere.",
-        question: "Koľko panelov použijete a koľko plagátov zostane?",
-        answer: "11",
-        remainder: "8"
-      },
-      {
-        title: "Úloha 4: Farby minulosti",
-        context: "Našli ste 63 vedier farby a musíte ich spravodlivo rozdeliť medzi 5 tried. Koľko vedier dostane každá trieda a koľko zostane bokom?",
-        question: "Koľko vedier dostane každá trieda a koľko zostane?",
-        answer: "12",
-        remainder: "3"
-      },
-      {
-        title: "Úloha 5: Tlačiareň v bunkri",
-        context: "V miestnosti nájdete starú tlačiareň a balíky papiera. Máte 286 strán a každý balík má 12 strán. Systém potrebuje vedieť počet plných balíkov a zostávajúcich strán.",
-        question: "Koľko balíkov a koľko strán zostane?",
-        answer: "23",
-        remainder: "10"
-      },
-      {
-        title: "Úloha 6: Kódovačka",
-        context: "Na monitore sa objaví výzva: 'Súčet vašich riešení je kód'. Spočítajte výsledky delenia z predchádzajúcich úloh (bez zvyšku). Potom výsledok vydelíte 6. Zadajte výsledok aj zvyšok delenia.",
-        question: "(15+13+11+12+23) / 6 = ?",
-        answer: "12",
+        title: "Úloha 5: Úniková šifra",
+        context: "Zistite priemer počtu zvyškov zo všetkých predchádzajúcich úloh a vynásobte ho číslom 4. Celý výsledok vydelíte 5. Zadajte výsledok aj zvyšok (z predchádzajúcich úloh: 0,0,5,11).",
+        question: "(0+0+5+11)/4 * 4 = 16 → 16 / 5 = ?",
+        answer: "3",
         remainder: "1"
       }
     ];
 
     let currentTask = 0;
     let timer;
-    let timeLeft = 120;
+    let timeLeft = 150;
 
     function startGame() {
       document.getElementById('intro').classList.add('hidden');
@@ -158,7 +151,7 @@
       document.getElementById('feedback').textContent = "";
       document.getElementById('task-answer').disabled = false;
       document.getElementById('task-remainder').disabled = false;
-      timeLeft = 120;
+      timeLeft = 150;
     }
 
     function checkAnswer() {
