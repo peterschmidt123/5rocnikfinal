@@ -72,10 +72,10 @@
   <div class="container" id="intro">
     <h1>Escape Room: Rozdelené tajomstvo</h1>
     <p>
-      V škole sa koná tajomná súťaž pre najbystrejších žiakov 5. ročníka. Boli ste zamknutí do starej časti budovy, kde sa nachádza sedem zapečatených miestností. Každá skrýva jednu matematickú úlohu. Ak ju vyriešite, miestnosť sa odomkne, prebliknú svetlá a dvere sa pootvoria – pripravené na váš ďalší krok.
+      Piataci, práve ste boli vybraní do tajnej misie! V škole sa stala záhadná udalosť. Počas rekonštrukcie starej časti budovy robotníci objavili zamknuté dvere vedúce do podzemia. Všetko nasvedčuje tomu, že ide o zabudnutý protiatómový bunker z čias dávnej minulosti. Vošli ste dovnútra a dvere sa za vami automaticky zatvorili. Aby ste sa dostali von, musíte vyriešiť sériu matematických úloh, ktoré odomykajú jednotlivé úrovne systému. Každá správna odpoveď je kľúčom.
     </p>
     <p>
-      Ste pripravení otestovať svoju logiku a prebojovať sa na slobodu pomocou svojich matematických schopností?
+      Ste pripravení na túto výzvu? Zvládnete úlohy, ktoré preveria vaše delenie, logiku a dôvtip?
     </p>
     <button class="start-btn" onclick="startGame()">Začať úlohy</button>
   </div>
@@ -84,7 +84,8 @@
     <h2 id="task-title"></h2>
     <p id="task-context"></p>
     <p><strong>Otázka:</strong> <span id="task-question"></span></p>
-    <input type="text" id="task-answer" placeholder="Tvoja odpoveď">
+    <input type="text" id="task-answer" placeholder="Výsledok delenia">
+    <input type="text" id="task-remainder" placeholder="Zvyšok (ak je)">
     <button class="next-btn" onclick="checkAnswer()">Skontrolovať</button>
     <div id="feedback"></div>
     <div id="timer"></div>
@@ -93,46 +94,52 @@
   <script>
     const tasks = [
       {
-        title: "Úloha 1: Školská knižnica",
-        context: "Na starých policiach je 125 kníh. Chceš ich rozdeliť do políc, pričom na každej bude rovnaký počet. Koľko kníh bude na jednej polici, ak ich rozdelíš do 8 políc? (so zvyškom)",
-        question: "Koľko kníh bude na jednej polici, ak ich rozdelíš do 8 políc? (Zvyšok ignoruj)",
-        answer: "15"
+        title: "Úloha 1: Knižnica pod zemou",
+        context: "Vstúpili ste do miestnosti plnej starých zaprášených kníh. Na polici je 125 kníh. Musíte ich rozdeliť do 8 rovnako veľkých políc. Len tak sa otvorí ďalšie dvere.",
+        question: "Koľko kníh bude na jednej polici a aký bude zvyšok?",
+        answer: "15",
+        remainder: "5"
       },
       {
-        title: "Úloha 2: Telocvičňa",
-        context: "V šatni je 94 tričiek. Potrebuješ ich rozdeliť do tašiek po 7 kusoch. Zaujíma nás, koľko celých tašiek môžeš pripraviť.",
-        question: "Koľko tašiek môžeš pripraviť, ak každá má 7 tričiek?",
-        answer: "13"
+        title: "Úloha 2: Šatňa strateného tímu",
+        context: "Zrazu sa otvorí tajná chodba do starej telocvične. V šatni nájdete 94 tričiek. Chcete ich roztriediť do tašiek po 7 kusoch. Systém čaká na počet plných tašiek aj zvyšné tričká.",
+        question: "Koľko tašiek a koľko tričiek zostane?",
+        answer: "13",
+        remainder: "3"
       },
       {
-        title: "Úloha 3: Galéria obrázkov",
-        context: "Máš 107 plagátov a chceš ich nalepiť na panely, pričom na každom bude 9 plagátov. Koľko panelov potrebuješ? (zvyšné nezarátaj)",
-        question: "Koľko celých panelov potrebuješ?",
-        answer: "11"
+        title: "Úloha 3: Galéria spomienok",
+        context: "Steny sú pokryté obrázkami. Máte 107 plagátov a panely, kde sa zmestí vždy 9 plagátov. Vložte ich, aby systém zobrazil ďalšie dvere.",
+        question: "Koľko panelov použijete a koľko plagátov zostane?",
+        answer: "11",
+        remainder: "8"
       },
       {
-        title: "Úloha 4: Výtvarný sklad",
-        context: "V sklade sa nachádza 63 vedier farby. Ak ich chceš rozdeliť rovnomerne medzi 5 tried, koľko vedier dostane každá trieda?",
-        question: "Rozdel 63 vedier medzi 5 tried rovnomerne (zvyšok ignoruj)",
-        answer: "12"
+        title: "Úloha 4: Farby minulosti",
+        context: "Našli ste 63 vedier farby a musíte ich spravodlivo rozdeliť medzi 5 tried. Koľko vedier dostane každá trieda a koľko zostane bokom?",
+        question: "Koľko vedier dostane každá trieda a koľko zostane?",
+        answer: "12",
+        remainder: "3"
       },
       {
-        title: "Úloha 5: Tlačiareň",
-        context: "Tlačiareň má 286 strán pripravených na tlač. Každý balík má 12 strán. Koľko celých balíkov je možné vytvoriť?",
-        question: "Koľko celých balíkov môžeme vytvoriť z 286 strán po 12 na balík?",
-        answer: "23"
+        title: "Úloha 5: Tlačiareň v bunkri",
+        context: "V miestnosti nájdete starú tlačiareň a balíky papiera. Máte 286 strán a každý balík má 12 strán. Systém potrebuje vedieť počet plných balíkov a zostávajúcich strán.",
+        question: "Koľko balíkov a koľko strán zostane?",
+        answer: "23",
+        remainder: "10"
       },
       {
-        title: "Úloha 6: Tajný výstup",
-        context: "Získané čísla zo všetkých predchádzajúcich úloh sčítaj. Výsledok del číslom 10. Koľko dostaneš?",
-        question: "(15 + 13 + 11 + 12 + 23) / 10 = ?",
-        answer: "7"
+        title: "Úloha 6: Kódovačka",
+        context: "Na monitore sa objaví výzva: 'Súčet vašich riešení je kód'. Spočítajte výsledky delenia z predchádzajúcich úloh (bez zvyšku). Potom výsledok vydelíte 6. Zadajte výsledok aj zvyšok delenia.",
+        question: "(15+13+11+12+23) / 6 = ?",
+        answer: "12",
+        remainder: "1"
       }
     ];
 
     let currentTask = 0;
     let timer;
-    let timeLeft = 90;
+    let timeLeft = 120;
 
     function startGame() {
       document.getElementById('intro').classList.add('hidden');
@@ -147,16 +154,21 @@
       document.getElementById('task-context').textContent = task.context;
       document.getElementById('task-question').textContent = task.question;
       document.getElementById('task-answer').value = "";
+      document.getElementById('task-remainder').value = "";
       document.getElementById('feedback').textContent = "";
       document.getElementById('task-answer').disabled = false;
-      timeLeft = 90;
+      document.getElementById('task-remainder').disabled = false;
+      timeLeft = 120;
     }
 
     function checkAnswer() {
       const userAnswer = document.getElementById('task-answer').value.trim();
-      if (userAnswer === tasks[currentTask].answer) {
+      const userRemainder = document.getElementById('task-remainder').value.trim();
+      const task = tasks[currentTask];
+
+      if (userAnswer === task.answer && userRemainder === task.remainder) {
         clearInterval(timer);
-        document.getElementById('feedback').textContent = "✔️ Správne! Prechádzate do ďalšej miestnosti...";
+        document.getElementById('feedback').textContent = "✔️ Správne! Dvere sa otvárajú...";
         document.getElementById('feedback').style.color = "#00ffcc";
         setTimeout(() => {
           currentTask++;
@@ -164,7 +176,7 @@
             loadTask();
             startTimer();
           } else {
-            document.getElementById('task-container').innerHTML = '<h2>🎉 Úspešne ste unikli! 🎉</h2><p>Vaše logické schopnosti vás oslobodili zo zapečatených miestností.</p>';
+            document.getElementById('task-container').innerHTML = '<h2>🎉 Úspešne ste unikli! 🎉</h2><p>Vaša matematická bystrosť otvorila všetky dvere!</p>';
           }
         }, 2000);
       } else {
@@ -184,6 +196,7 @@
           document.getElementById('feedback').textContent = "⛔ Čas vypršal. Skús to znova neskôr.";
           document.getElementById('feedback').style.color = "#ff0000";
           document.getElementById('task-answer').disabled = true;
+          document.getElementById('task-remainder').disabled = true;
         }
       }, 1000);
     }
