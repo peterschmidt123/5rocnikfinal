@@ -97,36 +97,36 @@
         title: "Úloha 1: Mapa úniku",
         context: "Našli ste plánik s rozmermi 48 cm × 36 cm. Každý obvodový segment je kódovaný. Najprv vypočítajte obvod. Potom tento výsledok rozdeľte medzi 7 stráží rovnomerne. Koľko dostane každý a aký bude zvyšok?",
         question: "Obvod obdĺžnika je? A ako sa rozdelí medzi 7 stráží?",
-        answer: "168",
-        remainder: "0"
+        answer: 24,
+        remainder: 0
       },
       {
         title: "Úloha 2: Skrinka so zrkadlami",
-        context: "Zrkadlové dlaždice sú usporiadané do radu po 96 kusov. Musíte ich zoradiť do radov po 9, ale tak, aby v každom rade bola zrkadlová symetria (t.j. párny počet dlaždíc). Koľko úplných symetrických radov môžete spraviť a koľko zvyšných dlaždíc zostane?",
-        question: "Koľko symetrických radov po 8 môžete vytvoriť z 96 dlaždíc?",
-        answer: "12",
-        remainder: "0"
+        context: "Zrkadlové dlaždice sú usporiadané do radu po 98 kusov. Musíte ich zoradiť do radov po 8, ale tak, aby v každom rade bola zrkadlová symetria. Koľko úplných symetrických radov môžete spraviť a koľko zvyšných dlaždíc zostane?",
+        question: "Koľko symetrických radov po 8 môžete vytvoriť z 98 dlaždíc?",
+        answer: 12,
+        remainder: 2
       },
       {
         title: "Úloha 3: Farebný kód",
         context: "Každá trieda má 137 farebných značiek. Potrebujete ich roztriediť po 11 na každý typ. Koľko typov vznikne a koľko zostane mimo?",
         question: "137 značiek po 11 na typ = ?",
-        answer: "12",
-        remainder: "5"
+        answer: 12,
+        remainder: 5
       },
       {
         title: "Úloha 4: Zásoby v sklade",
         context: "Našli ste 245 krabičiek s jedlom. Každá polica unesie iba 13 krabičiek. Rozdeľte ich spravodlivo. Zistite, koľko políc naplníte a koľko krabičiek zostane bez miesta.",
         question: "Koľko políc bude potrebných a aký je zvyšok?",
-        answer: "18",
-        remainder: "11"
+        answer: 18,
+        remainder: 11
       },
       {
         title: "Úloha 5: Úniková šifra",
-        context: "Zistite priemer počtu zvyškov zo všetkých predchádzajúcich úloh a vynásobte ho číslom 4. Celý výsledok vydelíte 5. Zadajte výsledok aj zvyšok (z predchádzajúcich úloh: 0,0,5,11).",
-        question: "(0+0+5+11)/4 * 4 = 16 → 16 / 5 = ?",
-        answer: "3",
-        remainder: "1"
+        context: "Zistite priemer počtu zvyškov zo všetkých predchádzajúcich úloh a vynásobte ho číslom 4. Celý výsledok vydelíte 5. Zadajte výsledok aj zvyšok (z predchádzajúcich úloh: 0,2,5,11).",
+        question: "(0+2+5+11)/4 * 4 = 18 → 18 / 5 = ?",
+        answer: 3,
+        remainder: 3
       }
     ];
 
@@ -155,8 +155,8 @@
     }
 
     function checkAnswer() {
-      const userAnswer = document.getElementById('task-answer').value.trim();
-      const userRemainder = document.getElementById('task-remainder').value.trim();
+      const userAnswer = Number(document.getElementById('task-answer').value.trim());
+      const userRemainder = Number(document.getElementById('task-remainder').value.trim());
       const task = tasks[currentTask];
 
       if (userAnswer === task.answer && userRemainder === task.remainder) {
